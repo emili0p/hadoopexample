@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # config
-INPUT_LOCAL="/home/emilio/quijote.txt"
-HDFS_INPUT="/user/emilio/input"
-HDFS_OUTPUT="/user/emilio/output"
+INPUT_LOCAL="/home/emilio/hadoopfun/El-Principito.txt" # fs local
+HDFS_INPUT="/user/emilio/input"                        # hdfs
+HDFS_OUTPUT="/user/emilio/output"                      # hdfs
 
 STREAMING_JAR=$(ls $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.4.2.jar)
 
@@ -33,13 +33,13 @@ chmod +x mapper.py reducer.py
 echo "ejecutando map reduce"
 echo "JAR = $STREAMING_JAR"
 hadoop jar $STREAMING_JAR \
-  -input $HDFS_INPUT/quijote.txt \
+  -input $HDFS_INPUT/El-Principito.txt \
   -output $HDFS_OUTPUT \
   -mapper mapper.py \
   -reducer reducer.py \
   -file mapper.py \
   -file reducer.py
 echo "mostrando resultados"
-hdfs dfs -cat $HDFS_OUTPUT/part-00000 | sort -k2 -nr | head -n 10
+hdfs dfs -cat $HDFS_OUTPUT/part-00000 | sort -k2 -nr | less
 
 echo "Todo bien !"
