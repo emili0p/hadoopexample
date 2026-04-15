@@ -40,6 +40,6 @@ hadoop jar $STREAMING_JAR \
   -file mapper.py \
   -file reducer.py
 echo "mostrando resultados"
-hdfs dfs -cat $HDFS_OUTPUT/part-00000 | sort -k2 -nr | less
+hdfs dfs -cat $HDFS_OUTPUT/part-00000 | sort -k2 -nr | head
 
 echo "Todo bien !"

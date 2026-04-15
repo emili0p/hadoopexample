@@ -5,7 +5,7 @@ import re
 counts = {}
 
 for line in sys.stdin:
-    # regex para limpiar texto, quita minuscalas y puntuaciones de las palabras
+    # regex para limpiar texto, quita minuscalas y puntuaciónes
     words = re.findall(r"\b\w+\b", line.lower())
     for w in words:
         counts[w] = counts.get(w, 0) + 1
